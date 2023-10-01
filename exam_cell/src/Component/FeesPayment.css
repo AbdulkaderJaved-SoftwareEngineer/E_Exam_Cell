@@ -1,0 +1,182 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.main
+{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+    box-sizing: border-box;
+}
+
+.box
+{
+    width:80%;
+    border: 1px solid black;
+    margin: 50px;
+}
+
+.head
+{
+    width: 100%;
+    border: 1px solid black;
+    display: flex;
+
+}
+
+.one
+{
+    width: 15%;
+    border: 1px solid black;
+
+}
+
+.two
+{
+    width: 70%;
+    padding: 10px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.three
+{
+    width: 15%;
+    border: 1px solid black;
+    font-weight: 900;
+    font-size: larger;
+    padding: 5px;
+}
+
+.up{
+    height: 100px;
+    width: 100%;
+
+}
+.small{
+    font-size: small;
+    
+}
+
+.college-name , .bank-name{
+    font-size: xx-large;
+    font-weight: 900;
+    align-self: center;
+}
+.main-body
+{
+    width: 100%;
+    height: 50%;
+    border: 1px solid black;
+}
+
+.info{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    padding: 20px;
+    
+    
+}
+.left li,.right li{
+    list-style-type: none;
+    margin: 20px;
+}
+
+.tables{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.tab1
+{
+    width: 55%;
+}
+
+.tab2{
+    height: max-content;
+}
+
+.bold-font{
+    padding: 5% 20%;
+    font-weight: 800;
+}
+
+.sign
+{
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 800;
+
+}
+.note
+{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px 20px;
+    font-weight: 800;
+    border: 1px solid black;
+}
+
+.bank
+{
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.l1
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.l2
+{
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 800;
+    padding: 10px;
+
+}
+
+.tab3{
+    width: 100%;
+}
+
+.tab3 tr{
+    text-align: center;
+}
+.stamp
+{
+    box-sizing: border-box ;
+    width: 100%;
+    height: 9%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    
+}
+
+.ki
+{
+    align-self: flex-end;
+    font-weight: 800;
+}
