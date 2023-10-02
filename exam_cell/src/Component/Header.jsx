@@ -38,7 +38,8 @@ import LeaderboardRoundedIcon from '@mui/icons-material/LeaderboardRounded';
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
 import { styled, useTheme } from '@mui/material/styles';
 import {FaUserAlt, FaUserEdit} from 'react-icons/fa'
-import {LuLogOut} from "react-icons/lu"
+import {LuLogOut} from "react-icons/lu";
+import {MdPayment} from "react-icons/md";
 
 const drawerWidth = 240;
 
@@ -441,8 +442,43 @@ onClick={()=>{handleMenuClick('/DashBoard')}}
 </ListItemButton>
 </ListItem>
 </Tooltip>
+<Divider/>
+
+<Tooltip title="Fees Payment" arrow placement="right">
+<ListItem key={4} disablePadding sx={{ display: 'block' }}>
+
+<ListItemButton
+  sx={{
+    minHeight: 48,
+    justifyContent: open ? 'initial' : 'center',
+    px: 2.5,
+  }}
+  onClick={()=>{handleMenuClick('/FeesPayment')}}
+
+>
+<ListItemIcon
+sx={{
+minWidth: 0,
+mr: open ? 3 : 'auto',
+justifyContent: 'center',
+color:"black"
+}}
+onClick={()=>{handleMenuClick('/FeesPayment')}}
+>
+<MdPayment />
+
+</ListItemIcon>
+<ListItemText primary="Fees Payment " sx={{ opacity: open ? 1 : 0 }} 
 
 
+
+/>
+
+
+
+</ListItemButton>
+</ListItem>
+</Tooltip>
 
 
 
