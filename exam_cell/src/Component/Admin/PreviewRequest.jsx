@@ -31,12 +31,6 @@ useEffect(()=>{
 },[data]);
 
 
-function getExamFormById(formId)
-{ 
-
-
-}
-
 
 
 

@@ -1,6 +1,7 @@
 import React, { useEffect,useState} from 'react'
 import axios from 'axios';
-import {Paper,Container, Typography} from "@mui/material"
+import {Paper,Container, Typography} from "@mui/material";
+import {Bars} from "react-loader-spinner"
 function DashBoardCard(props) {
 const [data,setData] = useState([]);
 
@@ -44,7 +45,16 @@ useEffect(
           }}>
             <Typography variant='h4' fontStyle="revert" color={props.fontColor} fontFamily="inherit"  >{props.reqName}</Typography>
             <br />
-     {data ? <Typography variant='h2' gutterBottom fontWeight='400' component='h2'>{data.myCount}</Typography> :"Loading"}
+     {data.length < 1 ? <Bars
+  
+  height="80"
+  width="80"
+  color="#4fa94d"
+  ariaLabel="bars-loading"
+  wrapperStyle={{marginLeft:'2%'}}
+  wrapperClass=""
+  visible={true}
+/>  :<Typography variant='h2' gutterBottom fontWeight='400' component='h2'>{data.myCount}</Typography>}
 
      {!data && <Typography variant='h2' gutterBottom fontWeight='400' component='h2'>Loading</Typography>}
           </Paper>

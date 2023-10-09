@@ -189,7 +189,7 @@ navigate(`/PreviewRequest/${options}`)
 
 <Tooltip title="View Application Form"  aria-label='View'>
 <IconButton>
-  <Link to={`/PreviewRequest/${props.number}`}> <GrFormView /></Link>
+  <Link to={`/PreviewRequest/${props.number}`}> <GrFormView /> </Link>
 </IconButton>
 </Tooltip>
 </Grid>

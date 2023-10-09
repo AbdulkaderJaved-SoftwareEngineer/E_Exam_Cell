@@ -22,6 +22,7 @@ import AdminDashBoard from './Component/Admin/AdminDashBoard';
 import AdminLogout from './Component/Admin/AdminLogout';
 import MakeAnnouncement from './Component/Admin/MakeAnnouncement';
 import FeesPayment from './Component/FeesPayment';
+import FeesReceipt from './Component/FeesReceipt';
 function App() {
   
   return (
@@ -47,6 +48,8 @@ function App() {
       <Route path="/AdminDashBoard" element={<AdminProtectedRoutes AdminComponent={AdminDashBoard}/>}/>
       <Route path="/MakeAnnouncement" element={<AdminProtectedRoutes AdminComponent={MakeAnnouncement}/>}/>
       <Route path="/FeesPayment" element={<ProtectedRouter Component={FeesPayment}/>}/>
+      <Route path="/FeesReceipt/:id" element={<ProtectedRouter Component={FeesReceipt}/>}/>
+
       <Route path="/PreviewRequest/:formId" Component={PreviewRequest}/>
       <Route path="*" element={ErrorPage}/>
      </Routes>

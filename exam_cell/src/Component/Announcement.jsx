@@ -10,6 +10,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import {MdDelete} from "react-icons/md";
 import { FaEdit } from 'react-icons/fa';
+import {Bars} from "react-loader-spinner"
 
 function Announcement(props) {
 const [announcements,setAnn] = useState([]);
@@ -60,7 +61,16 @@ if(res.status === 200)
      <br /><br />
      <Typography variant="h2" component='h1'>Announcements</Typography>
      <Stack  direction='column' spacing={5} component="container" alignItems='center'>
-  { announcements &&  announcements.map((item,index)=>(
+  {announcements.length < 1 ? <Bars
+  
+  height="80"
+  width="80"
+  color="#2929ff"
+  ariaLabel="bars-loading"
+  wrapperStyle={{}}
+  wrapperClass=""
+  visible={true}
+/> : announcements &&  announcements.map((item,index)=>(
     <>
     <Divider variant='left' role="presentation"><Chip label={item.Date===null ? "No date ":item.Date}/></Divider>
 <Card  key={index} style={{width:'300px' , height:'auto',borderTop:'5px solid skyblue'}}>

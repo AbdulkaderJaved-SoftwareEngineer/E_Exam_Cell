@@ -2,9 +2,10 @@ import DashBoardCard from './DashBoardCard';
 import React, { useEffect } from 'react'
 import Header from "./Header"
 import {useHistory,useState} from "react";
-import {Paper,Container, Typography, Grid, Box} from "@mui/material"
-
-
+import {Paper,Container, Typography, Grid, Box} from "@mui/material";
+import FeesRequestTable from './FeesRequestTable';
+import {Divider} from '@mui/material';
+import { FaRupeeSign } from 'react-icons/fa';
 function DashBoard() {
   const user = localStorage.getItem('rollno');
   const [pendingrequest,setpendingRequest] = useState([]);
@@ -66,7 +67,11 @@ const allRequest = "http://localhost:3001/api/AllDashboardRequest"
 
 
    </Grid>
-   </Box>
+   </Box><br /><br /><br /><br />
+   <Divider variant="middle">Fees Paid <FaRupeeSign/> </Divider>
+      <FeesRequestTable />
+      
+
 
     </div>
     </>

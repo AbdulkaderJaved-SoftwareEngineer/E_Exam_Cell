@@ -17,6 +17,11 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import VideoLabelIcon from '@mui/icons-material/VideoLabel';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
+import { FormHelperText, TextField } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import FeesReceipt from "./FeesReceipt";
 
 
 const steps = ['Add Student Details', 'Make Payment', 'Fees Receipt'];
@@ -178,87 +183,128 @@ function FeesPayment() {
     const [expiry,setExpiry] = useState('');
     const [cvc,setCVC] = useState('');
     const [focus,setFocus] = useState('');
-    
+    const [Name,setname] = useState("");
+    const [rollno,setRollno] = useState("");
+    const [DOB,setDOB] = useState("");
+    const [Gender,setGender] = useState("")
+    const [admission,setAdmission] = useState("");
+    const [Category,setCategory] = useState("");
     const [activeStep, setActiveStep] = useState(0);
     const [completed, setCompleted] = useState({});
-  
-    const totalSteps = () => {
-        return steps.length;
-      };
+    const [Branch,setBranch]= useState("");
+    const [Year,setYear] = useState("");
+    const [amount,setAmount] = useState("")
+    const navigate = useNavigate();
+
+   const nextStep = () =>{
+    setActiveStep((currentStep) =>currentStep!==2 ? currentStep + 1:currentStep );
     
-      const completedSteps = () => {
-        return Object.keys(completed).length;
-      };
-    
-      const isLastStep = () => {
-        return activeStep === totalSteps() - 1;
-      };
-    
-      const allStepsCompleted = () => {
-        return completedSteps() === totalSteps();
-      };
-    
-      const handleNext = () => {
-        const newActiveStep =
-          isLastStep() && !allStepsCompleted()
-            ? // It's the last step, but not all steps have been completed,
-              // find the first step that has been completed
-              steps.findIndex((step, i) => !(i in completed))
-            : activeStep + 1;
-        setActiveStep(newActiveStep);
-      };
-    
-      const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-      };
-    
-      const handleStep = (step) => () => {
-        setActiveStep(step);
-      };
-    
-      const handleComplete = () => {
-        const newCompleted = completed;
-        newCompleted[activeStep] = true;
-        setCompleted(newCompleted);
-        handleNext();
-      };
-    
-      const handleReset = () => {
-        setActiveStep(0);
-        setCompleted({});
-      };
-  
+   }
+const prevStep = ()=>{
+    setActiveStep((currentStep)=>currentStep!==0 ?currentStep - 1 : currentStep);
+}
+
+
+function handleFeePay()
+{
+    try {
+        axios.post("http://localhost:3001/api/feesPayment",{rollno:rollno,amount:amount,name:name,DOB:DOB,AdmissionType:admission,Quota:Category,Branch:Branch,Gender:Gender,Year:Year}).then((response)=>{
+            console.log(response);
+            if (response.status === 200)
+            {
+            setActiveStep((currentStep)=>currentStep+1)
+            alert("Fees Paid Successfully")
+            }            
+        })
+    } catch (error) {
+        
+    }
+}
+
+
+
+
   return (
  <div>
  <Stack sx={{ width: '100%' }} spacing={4}>
-      <Stepper alternativeLabel activeStep={1} connector={<QontoConnector />}>
-        {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel StepIconComponent={QontoStepIcon}>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-      <Stepper alternativeLabel activeStep={1} connector={<ColorlibConnector />}>
-        {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-    </Stack>
+     
+      <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
+       <Step>
+        <StepLabel StepIconComponent={ColorlibStepIcon}>Add Details </StepLabel>
+        {activeStep}
 
+      <div style={{display:activeStep == 0 ? "":"none"}}>
+<Typography variant='h4'><b>Add Student Details</b></Typography>
+        <Box component='container' justifyContent='center' alignItems='center'>
+        
+            <Grid container   flexGrow={1} flexDirection='row' spacing={3} alignItems='center' justifyContent='center' marginLeft='80%'> 
+           
+                    <Grid item xs={12} sm={6} md={6}>
+                    <FormHelperText>Name</FormHelperText>
+                        <TextField value={Name} placeholder="Name" onChange={(e)=>{setname(e.target.value)}}/>
+                        
+                    </Grid>
+                   
+                    <Grid item xs={12} sm={6} md={6}>
 
+                    <FormHelperText>RollNo</FormHelperText>
+                    <TextField  value={rollno} placeholder="e.g. 12345" onChange={(e)=>{setRollno(e.target.value)}}/>
+                   
+                    </Grid>
+                   
+                    <Grid item xs={12} sm={6} md={6}>
+                    <FormHelperText>DOB</FormHelperText>
+                    <TextField value={DOB} placeholder="DD/MM/YYYY" onChange={(e)=>{setDOB(e.target.value)}}/> 
+                    </Grid>
+                   
+                    
+                    <Grid item xs={12} sm={6} md={6}>
+                    <FormHelperText>GENDER</FormHelperText>
+                    <TextField value={Gender} onChange={(e)=>{setGender(e.target.value)}}/> 
+                    </Grid>
 
+                    <Grid item xs={12} sm={6} md={6}>
+                    <FormHelperText>Admission Type</FormHelperText>
+                    <TextField value={admission} placeholder="Admission Type e.g. DSE/REGULAR" onChange={(e)=>{setAdmission(e.target.value)}}/> 
+                    </Grid>
 
-       <Cards
+                    <Grid item xs={12} sm={6} md={6}>
+                    <FormHelperText>Category</FormHelperText>
+                    <TextField value={Category} placeholder="Category e.g. (CAP,Vacancy,Institutional,etc)" onChange={(e)=>{setCategory(e.target.value)}}/> 
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={6}>
+                    <FormHelperText>Branch</FormHelperText>
+                    <TextField value={Branch} placeholder="Branch e.g. (I.T,COMPS,EXTC)" onChange={(e)=>{setBranch(e.target.value)}}/> 
+                    </Grid>
+                    
+                    <Grid item xs={12} sm={6} md={6}>
+                    <FormHelperText>Year</FormHelperText>
+                    <TextField value={Year} placeholder="Year" onChange={(e)=>{setYear(e.target.value)}}/> 
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={6}>
+                    <FormHelperText>Amount</FormHelperText>
+                    <TextField value={amount} placeholder="Year" onChange={(e)=>{setAmount(e.target.value)}}/> 
+                    </Grid>
+            </Grid>
+            </Box>
+      </div>
+       </Step>
+       <Step>
+        <StepLabel StepIconComponent={ColorlibStepIcon}>Make Payment</StepLabel>
+        
+<form 
+style={{display : activeStep === 1 ? "" :"none"}}
+>
+
+<Cards
        number={number}
        name={name}
-       xpiry={expiry}
+       expiry={expiry}
        cvc={cvc}
        focused={focus}
-       
        />
-<form>
     <input
     type="tel"
     name="number"
@@ -299,6 +345,31 @@ function FeesPayment() {
 <br />
 
 </form>
+</Step>
+
+       <Step>
+        <StepLabel StepIconComponent={ColorlibStepIcon}>RESULT</StepLabel>
+
+
+       <div style={{display:activeStep === 2 ?"":"none"}}><h1>Fees Paid Successfully.Get Back to Dashboard</h1></div>
+       </Step>
+
+      
+      </Stepper>
+      
+    </Stack>
+<br /><br /><br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+{
+    activeStep ==1?<Button variant ="contained" onClick={()=>{handleFeePay()}}>Pay and Generate Fees Receipt</Button>:<></>
+}
+&nbsp;&nbsp;&nbsp;&nbsp;
+   {activeStep === 0 ?<Button variant="contained" onClick={()=>nextStep()}>Next</Button>: <Button variant ="contained" onClick={()=>{navigate('/DashBoard')}}>DashBoard</Button>
+     } 
+    
+
+
 </div>
   )
 }
