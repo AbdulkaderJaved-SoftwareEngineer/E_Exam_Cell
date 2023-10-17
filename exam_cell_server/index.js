@@ -554,20 +554,37 @@ app.get("/admin/examform/:formId",(req,res)=>{
   });
 });
 
-app.post("/admin/feesPayment",(req,res)=>{
-  const id = req.body.user;
-  const amount = req.body.amount;
-  const PaidDate = req.body.date;
-  const sqlFees = "INSERT INTO fees(RollNo,Amount,PaidOn) values(?,?,?)"
-  db.query(sqlFees,[id],(err,result)=>{
-      if(err) console.log(err)
-      res.send(result);
+app.post("/api/feesPayment",(req,res)=>{
+const sql = "INSERT INTO fees(rollno,amount,paidOn,name,DOB,AdmissionType,Quota,Branch,Gender,Year) values(?)";
+const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+const data = [req.body.rollno,req.body.amount,date,req.body.name,req.body.DOB,req.body.AdmissionType,req.body.Quota,req.body.Branch,req.body.Gender,req.body.Year];
 
-  })
+db.query(sql,[data],(err,result)=>{
+  if(err) console.log(err)
+  res.send(result);
+})
 });
 
 
+app.get("/api/FeesPayment/:id",(req,res)=>
+{
+// console.log(req.params.id);
+const sql = "SELECT r_no,rollno,paidOn,name,amount from fees where rollno = ?";
+db.query(sql,req.params.id,(err,result)=>{
+  res.send(result);
+})
 
+});
+
+app.get("/api/FeesReceipt/:id",(req,res)=>{
+  const id = req.params.id;
+  console.log(id);
+  const sql = "SELECT * from fees where r_no = ? ";
+  db.query(sql,id,(err,result)=>{
+    console.log(result);
+    res.send(result);
+  })
+})
 
 
 app.listen(3001,()=>{

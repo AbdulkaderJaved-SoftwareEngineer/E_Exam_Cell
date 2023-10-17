@@ -76,6 +76,7 @@ if(response.status === 200)
         </TableHead>
         <TableBody>
         
+       {!data ? "No results Found":""}
               {
                data.length < 1 ? "Loading": data.map((data)=>(
                 <>

@@ -25,28 +25,28 @@ const [updateBtnDisable,setUpdateDisable] = useState(true);
 
 
 
-useEffect(()=>
+// useEffect(()=>
 
-{
-    const user = localStorage.getItem('rollno');
-    Axios.post("http://localhost:3001/api/getProfile",{user:user})
-    .then((response)=>
-    {
-            if(response.data.length > 0)
-            {
-                console.log(response)
-                setProfile(response.data[0])
-            }
+// {
+//     const user = localStorage.getItem('rollno');
+//     Axios.post("http://localhost:3001/api/getProfile",{user:user})
+//     .then((response)=>
+//     {
+//             if(response.data.length > 0)
+//             {
+//                 console.log(response)
+//                 setProfile(response.data[0])
+//             }
 
 
 
-      console.log(response)
-      console.log(JSON.parse(JSON.stringify(response.data)))
-    if(response.data.length === 0)
-    {
-        {<Alert title="You have not Filled the Profile yet" severity="warning"></Alert>}
-        setProfile(null)
-    }
+//       console.log(response)
+//       console.log(JSON.parse(JSON.stringify(response.data)))
+//     if(response.data.length === 0)
+//     {
+//         {<Alert title="You have not Filled the Profile yet" severity="warning"></Alert>}
+//         setProfile(null)
+//     }
    
  
     
@@ -56,8 +56,8 @@ useEffect(()=>
       
 
       
-    })
-},[])
+//     })
+// },[])
 
 
 
@@ -85,41 +85,20 @@ function registerData(e)
    formdata.append("Semester",Semester)
   
     formdata.append("File",Profile);
+    console.log(formdfata)
     const config = {
         header : {
             "Content-Type":"multipart/form-data"
         }
     }
  Axios.post("http://localhost:3001/api/ProfileFill",
-// {
-// Rollno : RollNo,
-// // Username : username,
-// // Password:Password,
-// // Fullname:Fullname,
-// // Enrollment:Enrollment,
-// // PRN:PRN,
-// // Address:Address,
-// // Mobile : Mobile,
-// // Year:Year,
-// // Semester:Semester,
-// Profile:Profile
-// }
+
 formdata,config).then((resposne)=>{
     
     if (resposne.status === 200)
-    {alert(resposne)
+    {alert("Profile Filled Successfully")
        
-        if(resposne.data.length > 0)
-        { 
-            
-            
-        setUpdateDisable(false);
-        alert(updateBtnDisable)
-        console.log(resposne)
-        }
-        else{
-            setUpdateDisable(true);
-        }
+       
     }
 }).catch((err)=>{
     console.log(err)
