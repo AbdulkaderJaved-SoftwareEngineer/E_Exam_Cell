@@ -80,10 +80,10 @@ useEffect(()=>{
                 <div class="info">
                     <ul class="left">
                         <li>
-                            Account No. :
+                            Account No. :        124567890
                         </li>
                         <li>
-                            Form No. :
+                            Form No. :      {item.r_no}
                         </li>
                         <li>
                            Candidate:   {item.name}
@@ -95,7 +95,7 @@ useEffect(()=>{
                             Quota :     {item.Quota}
                         </li>
                         <li>
-                            Email :
+                            Email :     tester@test.com
                         </li>
                     </ul>
                     <ul class="right">
@@ -115,11 +115,11 @@ useEffect(()=>{
                             Category :      {item.Quota}
                         </li>
                         <li>
-                            Mobile No. :
+                            Mobile No. :        8591466974
                         </li>
                     </ul>
                 </div>
-                <div class="tables">
+               <div class="tables">
                     <table class="tab1" border="1">
                         <tr>
                             <th>Sr. No.</th>
@@ -264,13 +264,13 @@ useEffect(()=>{
                             </tr>
                             <tr>
                                 <td colspan="4">Receipt Total</td>
-                                <td>1,37,408</td>
+                                <td>{137400-`${item.amount}`} </td>
                             </tr>
                         </table>
                     </div>
                     
                     <div class="stamp">
-                        <p><b>(In Figure):</b> 1,37,408/-</p>
+                        <p><b>(In Figure):</b> {137400-`${item.amount}`}</p>
                         <p><b>(In Words):</b> One Lakh Thirty Seven Thousand Four Hundred Eight Only</p>
                         <p class="ki">Bankers Stamp and Signature</p>
                     </div>

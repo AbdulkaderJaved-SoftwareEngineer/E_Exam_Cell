@@ -71,6 +71,7 @@ function registerData(e)
 
 {
     e.preventDefault();
+    
     const formdata = new FormData();
    formdata.append("RollNo",RollNo);
    formdata.append("Username",username)
@@ -82,29 +83,25 @@ function registerData(e)
    formdata.append("PRN",PRN)
    formdata.append("Address",Address)
    formdata.append("Year",Year)
-   formdata.append("Semester",Semester)
+   formdata.append("Semester",Semester);
   
     formdata.append("File",Profile);
-    console.log(formdfata)
+    console.log(formdata)
     const config = {
         header : {
             "Content-Type":"multipart/form-data"
         }
     }
- Axios.post("http://localhost:3001/api/ProfileFill",
-
-formdata,config).then((resposne)=>{
+Axios.post("http://localhost:3001/api/ProfileFill",formdata,config).then((resposne)=>{
     
-    if (resposne.status === 200)
-    {alert("Profile Filled Successfully")
-       
-       
+    if(resposne.status === 200)
+    {
+        alert("Profile Filled Successfully");
     }
-}).catch((err)=>{
-    console.log(err)
-   
-
 })
+
+
+alert("Hello btn Clicked");
 }
 
 
@@ -202,7 +199,7 @@ return (
 
 </Grid>
 
-<Button type="submit"  variant='outlined' component="contained">Register Me</Button>&nbsp;&nbsp;
+<Button type="submit"  variant='outlined' component="contained" onClick={(e)=>{registerData(e)}}>Register Me</Button>&nbsp;&nbsp;
 <Button type="submit"  variant='outlined' color={"secondary"} component="contained" disable={updateBtnDisable}>Update Me</Button>
 </form>
 </Paper>

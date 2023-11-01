@@ -132,7 +132,7 @@ function handleCheckBox()
     formdata.append("Semester",Semester);
     formdata.append("avatar",Profile);
     formdata.append("semA",SemA);
-    formdata.append("SemB",SemB);
+    formdata.append("semB",SemB);
     formdata.append("fees",fees);
     formdata.append("Subjects",subjects);
     formdata.append("Branch",branch);
@@ -458,7 +458,7 @@ placeholder="Branch" onChange={(e)=>{setBranch(e.target.value)}}>
  <Alert severity="info">
 Fees Receipt <span style={{color:'red'}}>*</span>
 </Alert>
-<TextField type="file" name="fees"/>
+<TextField type="file" name="fees" onChange={(e)=>{setFees(e.target.files[0])}}/>
 
 
 <Alert severity="info">
@@ -601,7 +601,12 @@ aria-controls="panel1a-content"
 </AccordionSummary>
 <AccordionDetails>
 <Typography>Marksheet of sem 1</Typography>
-<TextField type="file" name="semDocs1" onChange={(e)=>{setSemA(e.target.value)}}/>
+<TextField type="file" name="semA" onChange={(e)=>{
+
+setSemA(e.target.files[0]);
+console.log(e.target.files[0])
+
+}}/>
 
 </AccordionDetails>
 </Accordion>
@@ -616,7 +621,10 @@ aria-controls="panel1a-content"
 </AccordionSummary>
 <AccordionDetails>
 <Typography>Marksheet of sem 2</Typography>
-<TextField type="file" name="semDocs2" onChange={(e)=>{setSemB(e.target.value)}}/>
+<TextField type="file" name="semB" onChange={(e)=>{setSemB(e.target.files[0])
+console.log(e.target.files[0])
+
+}}/>
 
 </AccordionDetails>
 </Accordion>
@@ -641,7 +649,7 @@ aria-controls="panel1a-content"
 <AccordionDetails>
 
 <Typography>Marksheet of sem 2</Typography>
-<TextField type="file" name="semDocs1" onChange={(e)=>{setSemA(e.target.value)}}/>
+<TextField type="file" name="semA" onChange={(e)=>{setSemA(e.target.files[0])}}/>
 </AccordionDetails>
 </Accordion>
 
@@ -655,7 +663,7 @@ aria-controls="panel1a-content"
 </AccordionSummary>
 <AccordionDetails>
 <Typography>Marksheet of sem 3</Typography>
-<TextField type="file" name="semDocs2" onChange={(e)=>{setSemB(e.target.value)}}/>
+<TextField type="file" name="semB" onChange={(e)=>{setSemB(e.target.files[0])}}/>
 
 </AccordionDetails>
 </Accordion>
@@ -676,7 +684,7 @@ aria-controls="panel1a-content"
 </AccordionSummary>
 <AccordionDetails>
 <Typography>Marksheet of sem 3</Typography>
-<TextField type="file" name="semDocs1" onChange={(e)=>{setSemA(e.target.value)}}/>
+<TextField type="file" name="semA" onChange={(e)=>{setSemA(e.target.files[0])}}/>
 
 </AccordionDetails>
 </Accordion>
@@ -691,7 +699,7 @@ aria-controls="panel1a-content"
 </AccordionSummary>
 <AccordionDetails>
 <Typography>Marksheet of sem 4</Typography>
-<TextField type="file" name="semDocs2" onChange={(e)=>{setSemB(e.target.value)}}/>
+<TextField type="file" name="semB" onChange={(e)=>{setSemB(e.target.files[0])}}/>
 
 </AccordionDetails>
 </Accordion>
@@ -712,7 +720,7 @@ aria-controls="panel1a-content"
 </AccordionSummary>
 <AccordionDetails>
 <Typography>Marksheet of sem 4</Typography>
-<TextField type="file" name="semDocs1" onChange={(e)=>{setSemA(e.target.value)}}/>
+<TextField type="file" name="semA" onChange={(e)=>{setSemA(e.target.files[0])}}/>
 
 </AccordionDetails>
 </Accordion>
@@ -728,7 +736,7 @@ aria-controls="panel1a-content"
 <AccordionDetails>
 
 <Typography>Marksheet of sem 5</Typography>
-<TextField type="file" name="semDocs2" onChange={(e)=>{setSemB(e.target.value)}}/>
+<TextField type="file" name="semB" onChange={(e)=>{setSemB(e.target.files[0])}}/>
 </AccordionDetails>
 </Accordion>
 </>

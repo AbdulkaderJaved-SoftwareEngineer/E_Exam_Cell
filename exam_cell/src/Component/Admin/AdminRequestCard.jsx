@@ -152,7 +152,7 @@ navigate(`/PreviewRequest/${options}`)
       
        <Grid container direction="row">
        
-       <Avatar src={props.photo} alt={props.fullname} sx={{ bgcolor: deepPurple[500],
+       <Avatar src={`http://localhost:3001/Exam/${props.photo}`} alt={props.fullname} sx={{ bgcolor: deepPurple[500],
         width: 70, height: 70        
         }}   variant='rounded'/>
 <Typography flexGrow={1}variant='h2' textAlign="right">
@@ -189,7 +189,10 @@ navigate(`/PreviewRequest/${options}`)
 
 <Tooltip title="View Application Form"  aria-label='View'>
 <IconButton>
-  <Link to={`/PreviewRequest/${props.number}`}> <GrFormView /> </Link>
+  {/* <Link to={`/PreviewRequest/${props.number}`}> <GrFormView /> </Link> */}
+  <Link to={`/PreviewRequest/${props.number}`}>
+    <GrFormView />
+  </Link>
 </IconButton>
 </Tooltip>
 </Grid>

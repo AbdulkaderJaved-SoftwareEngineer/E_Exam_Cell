@@ -83,12 +83,7 @@ function handleModal(option)
     console.log(res)
   })
 console.log(option)
-(<Modal
-open={true}>
-{modalData.map((item)=>(
-  <Typography>{item.ExamFormId}</Typography>
-))}
-</Modal>)
+
 
 }
 
@@ -120,14 +115,15 @@ return(
                 <>
                 <StyledTableRow >
               <StyledTableCell align="center">
-              <Link 
+              {/* <Link 
+              to={`/PreviewRequest/${request.ExamFormId}`}
               
-              component="button" 
-              variant ="body2"
-              onClick={()=>{handleModal(request.ExamFormId)}}
+              onClick={()=>{alert(request.ExamFormId)}}
               > 
-              {request.ExamFormId}</Link>
-              
+              {request.ExamFormId}</Link> */}
+              <Link to={`/PreviewRequest/${request.ExamFormId}`}> {request.ExamFormId}</Link>
+
+
               </StyledTableCell>
               <StyledTableCell align="center">12-2-2022</StyledTableCell>
               {

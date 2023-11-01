@@ -91,19 +91,18 @@ style={{
     <TextField id="username" value={username}placeholder='Username' onChange={(e)=>{setUsername(e.target.value)
     }}/>
 
-    {username}
+    
 
 
-    <TextField id="password" value={password}placeholder='Password' onChange={(e)=>{setPassword(e.target.value)
+    <TextField type="password" id="password" value={password}placeholder='Password' onChange={(e)=>{setPassword(e.target.value)
 }}/>
 
-{password}
 
     <Button id="login" variant="outlined" onClick={handleLogin}>Login</Button>
     <Link to="/AdminSignUp">Not Have Account? Try creating your Admin Account Now</Link>
     </Stack>
       {
-        message === 'Error' ? <Alert severity='error'>Username or Password is not Entered</Alert> :<></>
+        message === 'Error' ? <Alert severity='error'>Username or Password is not Entered</Alert> : <></>
       }
 
       {

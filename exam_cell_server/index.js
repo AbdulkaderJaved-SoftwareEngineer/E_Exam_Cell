@@ -7,7 +7,7 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser')
 // const fileUpload = require('express-fileupload')
 const multer = require('multer');
-const { FaSmileBeam } = require('react-icons/fa')
+// const { FaSmileBeam } = require('react-icons/fa')
 const { reset } = require('nodemon')
 //connection Code
 const db = mysql.createPool({
@@ -174,10 +174,9 @@ app.post('/api/ProfileFill',upload.single('File'),(req,res)=>{
   const mobile = req.body.Mobile
   const address = req.body.Address
   
-  const file = req.file.filename
+  const file = req.file ? req.file.filename:null;
   
-  
-  
+
   
   
     console.log("This is a Request File",file)
@@ -186,8 +185,7 @@ app.post('/api/ProfileFill',upload.single('File'),(req,res)=>{
       if(err) res.send(err)
      res.send(result)
     })
-  
-  
+
   })
   
 
@@ -210,48 +208,47 @@ var ExamImageConfig = multer.diskStorage({
   });
 
 app.post("/api/ExamFormFill",Examformupload.fields([
-  {name : 'avatar',maxCount:1},
-  {name : 'semA' , maxCount:1},
-  {name : 'semB' ,maxCount:1},
-  {name : 'fees' ,maxCount:1}
+  {name : 'avatar'},
+  {name : 'semA'},
+  {name : 'semB'},
+  {name :'fees'}
   
-])),
+
+]),
 (req,res)=>
 {
   const fullname = req.body.Fullname;
   const address = req.body.Address;
   const RollNo = req.body.RollNo;
-  const photo = req.file.filename;
-  const semA = req.file ? req.file.filename : null;
-  const semB = req.file ? req.file.filename : null;
-  const fees = req.file.filename;
-  
+  const photo = req.files['avatar'][0].filename;
   const mobile = req.body.Mobile;
   const subject = req.body.Subjects;  
   const allSub = JSON.stringify(subject);
   const enrollment = req.body.EnrollmentNo;
   const year = req.body.Year;
   const semester = req.body.Semester;
+  const semA = req.files['semA'][0].filename;
+  const semB = req.files['semB'][0].filename;
+  const fees = req.files['fees'][0].filename;
   const branch = req.body.Branch;
   const email = req.body.Email;
   const examsection = req.body.ExamSection;
   const gender = req.body.Gender;
   const admissiontype = req.body.AdmissionType;
-
   const scheme = req.body.Scheme;
 
+  const stringer = JSON.stringify([semA,semB,fees])
+  console.log(stringer);
+  console.log(semB);
 
+db.query("Insert into examform set ? ",{Fullname:fullname,Address:address,RollNo:RollNo,Profile:photo,Subjects:allSub,LowerSemDetails:stringer,Email:email,Mobile:mobile,Year:year,Semester:semester,Branch:branch,ExamSection:examsection,Gender:gender,AdmissionType:admissiontype,Enrollment:enrollment,scheme:scheme},(err,result)=>{
 
+  if (err) console.log(err)
+  res.send(result)
 
-db.query("Insert into examform set ? ",{Fullname:fullname,Address:address,RollNo:RollNo,Profile:photo,Subjects:allSub,Email:email,Mobile:mobile,Year:year,Semester:semester,Branch:branch,ExamSection:examsection,Gender:gender,AdmissionType:admissiontype,Enrollment:enrollment,scheme:scheme},(err,result)=>{
+});
 
-  if (err) res.send(err);
- res.send(result)
-
-
-})
-
-}
+});
 //--------------------------------------------------->
 app.post("/api/ExamFormById",(req,res)=>{
 

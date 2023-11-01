@@ -34,7 +34,7 @@ const allRequest = "http://localhost:3001/api/AllDashboardRequest"
       
 
 <Grid item>
-<DashBoardCard color="blue" fontColor="blue" reqName = "All Requests" url={allRequest} user={user}/>
+<DashBoardCard color="blue" fontColor="blue" reqName = "All ExamForm Requests" url={allRequest} user={user}/>
 
 
 </Grid>
@@ -42,21 +42,21 @@ const allRequest = "http://localhost:3001/api/AllDashboardRequest"
 
 
 <Grid item>
-<DashBoardCard color="green" fontColor="green" reqName = "Approved" url={approve} user={user}/>
+<DashBoardCard color="green" fontColor="green" reqName = "Approved Examforms" url={approve} user={user}/>
 
 
 </Grid>
 
 
 <Grid item>
-<DashBoardCard color="red" fontColor="red" reqName = "Rejected" url={reject} user={user}/>
+<DashBoardCard color="red" fontColor="red" reqName = "Rejected Examforms" url={reject} user={user}/>
 
 
 </Grid>
 
 
 <Grid item>
-<DashBoardCard color = "orange" fontColor="orange" reqName = "Awaiting" url={pending} user={user}/>
+<DashBoardCard color = "orange" fontColor="orange" reqName = "Awaiting Examforms" url={pending} user={user}/>
 
 
 </Grid>

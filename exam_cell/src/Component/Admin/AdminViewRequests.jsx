@@ -57,7 +57,7 @@ getAllRequest()
       
         <Grid item >
          
-        <AdminRequestCard key={item.ExamformId} number={item.ExamFormId} status={item.ExamFormStatus} fullname={item.Fullname} rollno = {item.RollNo} photo={item.profile}
+        <AdminRequestCard key={item.ExamformId} number={item.ExamFormId} status={item.ExamFormStatus} fullname={item.Fullname} rollno = {item.RollNo} photo={item.Profile}
          
         
         

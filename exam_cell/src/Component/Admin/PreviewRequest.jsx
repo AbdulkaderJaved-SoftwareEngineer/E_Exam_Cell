@@ -28,7 +28,7 @@ useEffect(()=>{
     })
   
 
-},[data]);
+},[]);
 
 
 
@@ -43,7 +43,7 @@ useEffect(()=>{
 
   return (
     <>
-    {data && data.map((item)=>(
+          {data && data.map((item)=>(
     <div>
    
       <section>
@@ -87,7 +87,7 @@ useEffect(()=>{
                 <table className="table table-bordered">
                   <tbody>
                   <tr>
-                    <td><b>RollNo : </b>{item.Rollno}</td>
+                    <td><b>RollNo : </b>{item.RollNo}</td>
                     <td><b>Course: </b> {item.Branch}</td>
                   </tr>
                   <tr>
@@ -148,7 +148,11 @@ useEffect(()=>{
                   <tbody>
                   <tr>
                    
-                    <td>{item.Subjects}</td>
+                    
+                    <ul>
+                        <td><li>{JSON.parse(item.Subjects).concat("\n")}</li></td>
+
+                    </ul>
                    
                   </tr>
                   
@@ -174,7 +178,8 @@ aria-controls="panel1a-content"
 <Typography>Result</Typography>
 </AccordionSummary>
 <AccordionDetails>
-<Typography>Marksheet of sem 1</Typography>
+<h5>{JSON.parse(item.LowerSemDetails)[0]}</h5> 
+<img src={`http://localhost:3001/Exam/${JSON.parse(item.LowerSemDetails)[0]}`} alt="hello" />
 
 </AccordionDetails>
 </Accordion>
@@ -190,6 +195,8 @@ aria-controls="panel1a-content"
 <AccordionDetails>
 <Typography>Marksheet of sem 2</Typography>
 
+<img src={`http://localhost:3001/Exam/${JSON.parse(item.LowerSemDetails)[1]}`} alt="hello" />
+
 </AccordionDetails>
 </Accordion>
 
@@ -201,8 +208,10 @@ aria-controls="panel1a-content"
 <Typography>Fees Receipt</Typography>
 
 </AccordionSummary>
+
 <AccordionDetails>
 <Typography>Fees Reciept</Typography>
+<img src={`http://localhost:3001/Exam/${JSON.parse(item.LowerSemDetails)[2]}`} alt="hello" />
 
 </AccordionDetails>
 </Accordion>
@@ -211,7 +220,7 @@ aria-controls="panel1a-content"
  ))}
     </>
   ) 
-      
+
 }
 
 export default PreviewRequest;

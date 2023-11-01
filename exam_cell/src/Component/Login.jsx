@@ -101,6 +101,8 @@ return (<>
 <Button type="submit" variant="contained">Login</Button>
 <br />
 <Link to="/SignUp">No Have Account? Register Now</Link>
+<br/>
+<Link to="/Admin">Admin</Link>
 </form>
 </div>
 </>
